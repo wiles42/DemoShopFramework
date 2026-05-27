@@ -1,9 +1,18 @@
-.gradle
+.gradle/
 build/
+screenshots/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 .kotlin
+test-output/
+allure-results/
+allure-report/
+extent-reports/
+*.log
+logs/
+.env
+config.properties
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

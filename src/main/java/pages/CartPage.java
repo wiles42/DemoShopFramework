@@ -42,21 +42,23 @@ public class CartPage extends BasePage {
         return findElement(productName).isDisplayed();
     }
     public String correctSubTotal(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(productSubTotal));
         return findElement(productSubTotal).getText();
     }
     public void setContinueShopping(){
         findElement(continueShopping).click();
     }
     public void setUpdateCart(String quantity){
-        WebElement quantityupdate = findElement(updateQuantity);
-        quantityupdate.click();
-        quantityupdate.sendKeys(Keys.COMMAND,"a");
-        quantityupdate.sendKeys(Keys.BACK_SPACE);
-        quantityupdate.sendKeys(quantity);
-        quantityupdate.sendKeys(Keys.ENTER);
+        WebElement quantityUpdate = findElement(updateQuantity);
+        quantityUpdate.click();
+        quantityUpdate.sendKeys(Keys.COMMAND,"a");
+        quantityUpdate.sendKeys(Keys.BACK_SPACE);
+        quantityUpdate.sendKeys(quantity);
+        quantityUpdate.sendKeys(Keys.ENTER);
 
     }
     public boolean emptyCartTitleDisplayed(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emptyCartTitle));
         return findElement(emptyCartTitle).isDisplayed();
     }
     public void acceptTermsAndConditions(){

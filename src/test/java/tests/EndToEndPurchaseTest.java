@@ -3,29 +3,36 @@ package tests;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AccountPage;
-import pages.CartPage;
-import pages.CheckoutPage;
-import pages.LoginPage;
+import pages.*;
 import utils.CartSyncHelper;
 import utils.UrlValidator;
+import utils.UserNameGenerator;
 
 /**
  * @author wiles42
  */
 public class EndToEndPurchaseTest extends BaseTest {
     @Test
-    public void registeredUserCheckoutFlow(){
-        LoginPage loginPage = new LoginPage(driver);
+    public void registerUserCheckoutFlow(){
+        RegistrationPage registrationPage = new RegistrationPage(driver);
         CartPage cartPage = new CartPage(driver);
         CheckoutPage checkoutPage = new CheckoutPage(driver);
-        AccountPage accountPage = new AccountPage(driver);
         CartSyncHelper cartSyncHelper = new CartSyncHelper(driver);
+        String email = UserNameGenerator.generateEmail();
+        String password = UserNameGenerator.generatePassword();
 
-        loginPage.setNavLogin();
-        loginPage.setEmailInput("testing101@email.com");
-        loginPage.setPasswordInput("password123");
-        loginPage.clickLoginBtn();
+        registrationPage.setNavRegLink();
+        registrationPage.setGenderMale();
+        registrationPage.setFirstName("Wiley");
+        registrationPage.setLastName("Griffin");
+
+        registrationPage.setEmailInput(email);
+        registrationPage.setPasswordInput(password);
+        registrationPage.setConfirmPasswordPasswordInput(password);
+        registrationPage.clickRegisterBtn();
+        Assert.assertTrue(registrationPage.registrationSuccessMsgDisplayed());
+        Assert.assertEquals(registrationPage.getRegistrationSuccessMsg(),"Your registration completed");
+
 
         cartPage.navElectronics();
         cartPage.navCellPhones();
@@ -61,11 +68,7 @@ public class EndToEndPurchaseTest extends BaseTest {
 
         Assert.assertTrue(checkoutPage.verifyOrderConfirmationMessage());
 
-        accountPage.clickAccountLink();
-        accountPage.clickAddressesLink();
-        accountPage.clickDeleteAddressBtn(); //The site take a long time to delete the address
-        accountPage.clickLogOutLink();
-        UrlValidator.assertCurrentUrl(driver,"https://demowebshop.tricentis.com/");
+
 
 
 

@@ -21,5 +21,11 @@ dependencies {
 }
 
 test {
-    useTestNG()
+    useTestNG() {
+        def suiteFile = System.getProperty("suiteXmlFile")
+
+        if (suiteFile != null) {
+            suites suiteFile
+        }
+    }
 }

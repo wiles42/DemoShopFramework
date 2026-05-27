@@ -24,13 +24,10 @@ public class CheckoutPage extends BasePage{
     By continueToPaymentBtn = By.cssSelector("input[onclick='ShippingMethod.save()']");
     By creditCardPaymentRadio = By.id("paymentmethod_2");
     By continueToPayInfo = By.cssSelector("input[onclick='PaymentMethod.save()']");
-    By cardHolderName = By.cssSelector("CardholderName");
     By continueToConfirmationBtn = By.cssSelector("input[onclick='PaymentInfo.save()']");
     By confirmOrderTotal = By.cssSelector(".order-total");
     By confirmOrderBtn = By.cssSelector("input[onclick='ConfirmOrder.save()']");
     By orderConfirmMessage = By.cssSelector(".title");
-    By orderConfirmNumber = By.cssSelector(".details");
-    By orderFinishedBtn = By.cssSelector(".order-completed-continue-button");
 
 public void setSelectCountry(String country){
     WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -71,29 +68,24 @@ public void setEnterPhoneNumber(String phoneNumber){
 }
 public void setContinueToShipBtn(){
     findElement(continueToShipBtn).click();
-    waitForNextSectionBtn(continueToMethodBtn);
+    waitForElementToBeClickable(continueToMethodBtn);
 }
 public void setContinueToMethodBtn(){
     findElement(continueToMethodBtn).click();
-    waitForNextSectionBtn(nextDayAirRadio);
+    waitForElementToBeClickable(nextDayAirRadio);
 }
 public void setNextDayAirRadio(){
+
     findElement(nextDayAirRadio).click();
 }
 public void setContinueToPaymentBtn(){
     findElement(continueToPaymentBtn).click();
-    waitForNextSectionBtn(creditCardPaymentRadio);
-}
-public void setCreditCardPaymentRadio(){
-    findElement(creditCardPaymentRadio).click();
-    waitForNextSectionBtn(continueToPayInfo);
+    waitForElementToBeClickable(continueToPayInfo);
 }
 public void setContinueToPayInfo(){
+    waitForElementToBeClickable(continueToPayInfo);
     findElement(continueToPayInfo).click();
-    waitForNextSectionBtn(continueToConfirmationBtn);
-}
-public void setCardHolderName(String name){
-    findElement(cardHolderName).sendKeys(name);
+    waitForElementToBeClickable(continueToConfirmationBtn);
 }
 public void setContinueToConfirmationBtn(){
     findElement(continueToConfirmationBtn).click();
@@ -110,15 +102,7 @@ public void setConfirmOrderBtn(){
 public boolean verifyOrderConfirmationMessage(){
     return findElement(orderConfirmMessage).isDisplayed();
 }
-public String verifyConfirmationMessageText(){
-    return findElement(orderConfirmMessage).getText();
-}
-public String verifyConfirmationNumber (){
-    return findElement(orderConfirmNumber).getText();
-}
-public void setOrderFinishedBtn(){
-    findElement(orderFinishedBtn).click();
-}
+
 
 
 

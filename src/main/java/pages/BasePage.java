@@ -21,15 +21,12 @@ public class BasePage {
         this.actions = new Actions(driver);
     }
 
-    public BasePage() {
-    }
-
     public WebElement findElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-    public void waitForNextSectionBtn (By locator){
+    public void waitForElementToBeClickable (By locator){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
     public void waitForUrl (String expectedUrl){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
