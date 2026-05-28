@@ -122,7 +122,8 @@ src
 ## ⚠️ Notes
 
 * Some UI elements require explicit waits due to dynamic loading
-* Bugs were found in invalid cart quantity update and Address deletion. Address deletion was left out due to unreliable backend performance.
+* Bugs were identified in cart quantity validation and address deletion workflows.
+* Address deletion test coverage was intentionally excluded due to inconsistent backend behavior in the test environment.
 * Tests are designed to be independent and repeatable
 
 ---
